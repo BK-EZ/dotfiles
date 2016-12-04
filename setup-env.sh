@@ -1,4 +1,7 @@
 #!/usr/bin/env bash
+#
+# Install dotfiles and other resources to the enviornment.
+
 set -e
 
 echo "Setting up enviornment..."
