@@ -16,10 +16,10 @@ echo "Uninstalling oh-my-zsh if present..."
 sudo rm -rf $HOME/.oh-my-zsh
 
 echo "Installing oh-my-zsh..."
-git clone git://github.com/robbyrussell/oh-my-zsh.git $HOME/vagrant/.oh-my-zsh
+git clone git://github.com/robbyrussell/oh-my-zsh.git $HOME/.oh-my-zsh
 
 echo "Installing zsh-themes..."
-cp $DOTFILES/zsh-themes/* $ZSH/themes/
+cp $DOTFILES/zsh-themes/* $HOME/.oh-my-zsh/themes/
 
 echo "Installing .zshrc file..."
 cp $DOTFILES/zshrc/dot_zshrc $HOME/.zshrc
