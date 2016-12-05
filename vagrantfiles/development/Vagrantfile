@@ -1,7 +1,7 @@
 Vagrant.configure("2") do |config|
 
   config.vm.box = "ubuntu/trusty64"
-  config.vm.synced_folder "/Users/alexn-macbook/Workspace", "/home/vagrant/workspace"
+  # config.vm.synced_folder "/Users/alexn-macbook/Workspace", "/home/vagrant/workspace"
 
   config.vm.provider "virtualbox" do |vb|
     vb.memory = "1024"
@@ -9,6 +9,9 @@ Vagrant.configure("2") do |config|
 
   config.vm.provision "shell", inline: <<-SHELL
     apt-get update
-    apt-get install -y apache2
+    apt-get install -y git
+    git clone git://github.com/bk-ez/dotfiles /home/vagrant/dotfiles
+#   sudo /home/vagrant/dotfiles/setup-env.sh
+    echo $HOME > /home/vagrant/txt
   SHELL
 end

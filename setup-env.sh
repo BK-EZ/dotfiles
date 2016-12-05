@@ -25,6 +25,6 @@ echo "Installing .zshrc file..."
 cp $DOTFILES/zshrc/dot_zshrc $HOME/.zshrc
 
 echo "Changing default shell to zsh..."
-sudo chsh -s $(which zsh)
+sudo chsh -s $(which zsh) $(whoami)
 
 echo "Enviornment successfully set up! Please restart the session for changes to be applied!"
