@@ -6,12 +6,25 @@ set -e
 
 echo "Setting up enviornment..."
 
+echo "Setting path to script..."
 DOTFILES=$(dirname "$0")
 
-sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
+echo "Installing zsh..."
+apt-get install zsh -y
 
+echo "Uninstalling oh-my-zsh if present..."
+sudo rm -rf $HOME/.oh-my-zsh
 
+echo "Installing oh-my-zsh..."
+git clone git://github.com/robbyrussell/oh-my-zsh.git $HOME/vagrant/.oh-my-zsh
+
+echo "Installing zsh-themes..."
 cp $DOTFILES/zsh-themes/* $ZSH/themes/
+
+echo "Installing .zshrc file..."
 cp $DOTFILES/zshrc/dot_zshrc $HOME/.zshrc
 
-echo "Enviornment successfully set up!"
+echo "Changing default shell to zsh..."
+sudo chsh -s $(which zsh)
+
+echo "Enviornment successfully set up! Please restart the session for changes to be applied!"
