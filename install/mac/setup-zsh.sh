@@ -26,3 +26,7 @@ install_zsh() {
   echo "changing env to zsh..."
   env zsh
 }
+
+setup_zsh() {
+  install_zsh
+}
