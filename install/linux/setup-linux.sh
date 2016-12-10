@@ -3,6 +3,7 @@
 # Install dotfiles and other resources to the enviornment.
 
 set -e
+set -u
 
 echo "Setting up enviornment..."
 
