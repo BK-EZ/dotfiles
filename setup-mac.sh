@@ -1,41 +1,37 @@
 #!/bin/bash
 #
 # set up a mac dev enviornment
+set -e
+set -u
 
-main() {
-  echo "Begining installation for mac os setup"
-  say "here we go boys"
+source $BASEDIR/installation/common/helpers.sh
 
-  readonly BASEDIR=$(dirname "$0")
-
-  echo "Installing /etc/shells file..."
-  sudo cp $BASEDIR/shell/shells /etc/shells
-
+install_brew() {
   echo "Installing homebrew..."
-  if test ! $(which brew)
-  then
+  if [[ ! $(which brew) ]]; then
     ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
   fi
+}
 
-  echo "Installing brew packages..."
-  brew install zsh
-  brew install git
-  brew install pcre
-  brew install zsh-completions
-
+install_brew_caskroom() {
   echo "Installing brew caskroom..."
   brew tap caskroom/cask
-  brew install brew-cask
   brew tap caskroom/versions
+}
 
+install_brew_packages() {
+  echo "Installing brew packages..."
+  handle_file "brew install" "$BASEDIR/packages/brew.txt"
+}
+
+install_brew_caskroom_packages() {
   echo "Installing brew cask packages..."
-  brew cask install alfred
-  brew cask install atom
-  brew cask install discord
-  brew cask install google-chrome
-  brew cask install iterm2
-  brew cask install spectacle
-  brew cask install steam
+  handle_file "brew cask install" "$BASEDIR/packages/brew-cask.txt"
+}
+
+install_zsh() {
+  echo "Installing /etc/shells file..."
+  sudo cp $BASEDIR/shell/shells /etc/shells
 
   echo "Uninstalling oh-my-zsh if present..."
   sudo rm -rf $HOME/.oh-my-zsh
@@ -54,6 +50,19 @@ main() {
 
   echo "changing env to zsh..."
   env zsh
+}
+
+main() {
+  echo "Begining installation for mac os setup"
+  say "here we go boys"
+
+  local readonly BASEDIR=$(dirname "$0")
+
+  install_brew
+  install_brew_caskroom
+  install_brew_packages
+  install_brew_caskroom_packages
+  install_zsh
 
   echo "mac os enviornment successfully setup!"
   say "great job"

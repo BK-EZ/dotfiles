@@ -1,0 +1,7 @@
+alfred
+atom
+discord
+google-chrome
+iterm2
+spectacle
+steam
