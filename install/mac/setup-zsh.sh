@@ -4,10 +4,12 @@
 set -e
 set -u
 
-install_zsh() {
+update_shellsfile() {
   echo "Installing /etc/shells file..."
   sudo cp $BASEDIR/shell/shells /etc/shells
+}
 
+install_ohmyzsh() {
   echo "Uninstalling oh-my-zsh if present..."
   sudo rm -rf $HOME/.oh-my-zsh
 
@@ -19,7 +21,9 @@ install_zsh() {
 
   echo "Installing .zshrc..."
   cp $BASEDIR/shell/zshrc $HOME/.zshrc
+}
 
+use_zsh() {
   echo "Changing default shell to zsh..."
   sudo chsh -s $(which zsh)
 
@@ -28,5 +32,7 @@ install_zsh() {
 }
 
 setup_zsh() {
-  install_zsh
+  update_shellsfile
+  install_ohmyzsh
+  use_zsh
 }
