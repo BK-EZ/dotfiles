@@ -13,7 +13,7 @@ main() {
 }
 
 ask_for_env() {
-  options=(
+  local readonly options=(
     "Auto-Detect"
     "Mac"
     "Linux"
@@ -32,11 +32,16 @@ ask_for_env() {
 }
 
 ask_if_sure() {
+  local readonly options=(
+    "Heck Yes"
+    "Heck No"
+  )
+
   echo "Are you sure you want to exit?"
-  select input in "Heck Yes" "Heck No"; do
+  select input in "${options[@]}"; do
     case $input in
-      "Heck Yes" ) echo "Goodbye friend"; exit 0;;
-      "Heck No" ) break;;
+      "${options[0]}" ) echo "Goodbye friend"; exit 0;;
+      "${options[1]}" ) break;;
     esac
   done
 }
