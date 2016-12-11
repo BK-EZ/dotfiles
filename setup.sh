@@ -13,13 +13,20 @@ main() {
 }
 
 ask_for_env() {
+  options=(
+    "Auto-Detect"
+    "Mac"
+    "Linux"
+    "Exit"
+  )
+
   echo "Which enviornment would you like to install onto?"
-  select input in "Mac" "Linux" "Auto-Detect" "Exit"; do
+  select input in "${options[@]}"; do
     case $input in
-        Mac ) setup_mac; break;;
-        Linux ) echo no!; break;;
-        Auto-Detect ) echo no!; break;;
-        Exit ) ask_if_sure; break;;
+        "${options[0]}" ) echo no!; break;;
+        "${options[1]}" ) setup_mac; break;;
+        "${options[2]}" ) echo no!; break;;
+        "${options[3]}" ) ask_if_sure; break;;
     esac
   done
 }
