@@ -5,10 +5,9 @@
 set -e
 set -u
 
-source $BASEDIR/install/helpers/handle-file.sh
 source $BASEDIR/install/mac/setup-brew.sh
 source $BASEDIR/install/mac/setup-zsh.sh
-source $BASEDIR/install/helpers/colors.sh
+
 
 setup_mac() {
   echo -e "${Cya}Begining installation for mac os setup${RCol}"
