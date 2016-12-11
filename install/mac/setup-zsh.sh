@@ -6,8 +6,8 @@ set -u
 
 check_zsh() {
   echo -e "${Cya}Checking zsh is installed...${RCol}"
-  if [[ -f "/usr/local/bin/zsh" ]]; then
-    echo -e "${Red}Brew installation of zsh not found${RCol}"
+  if [[ ! -f "/usr/local/bin/zsh" ]]; then
+    >&2 echo -e "${Red}Brew installation of zsh not found${RCol}"
     exit 1
   fi
 }
