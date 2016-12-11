@@ -20,6 +20,9 @@ setup_mac() {
   echo -e "${Gre}mac os enviornment successfully setup!${RCol}"
   say "great job"
 
+  # env zsh exits ouput from the script
   echo -e "${Cya}Changing env to zsh...${RCol}"
   env zsh
+
+  exit 0
 }
