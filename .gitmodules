@@ -1,0 +1,3 @@
+[submodule "install/libraries/ansi/ansi"]
+	path = install/libraries/ansi/ansi
+	url = git@github.com:fidian/ansi.git
