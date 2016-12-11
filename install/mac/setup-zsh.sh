@@ -5,30 +5,27 @@ set -e
 set -u
 
 update_shellsfile() {
-  echo "Installing /etc/shells file..."
+  echo -e "${Cya}Installing /etc/shells file..${RCol}."
   sudo cp $BASEDIR/shell/shells /etc/shells
 }
 
 install_ohmyzsh() {
-  echo "Uninstalling oh-my-zsh if present..."
+  echo -e "${Cya}Uninstalling oh-my-zsh if present...${RCol}"
   sudo rm -rf $HOME/.oh-my-zsh
 
-  echo "Installing oh-my-zsh..."
+  echo -e "${Cya}Installing oh-my-zsh...${RCol}"
   git clone https://github.com/robbyrussell/oh-my-zsh $HOME/.oh-my-zsh
 
-  echo "Installing zsh themes..."
+  echo -e "${Cya}Installing zsh themes...${RCol}"
   cp $BASEDIR/zsh-themes/* $HOME/.oh-my-zsh/themes/
 
-  echo "Installing .zshrc..."
+  echo -e "${Cya}Installing .zshrc...${RCol}"
   cp $BASEDIR/shell/zshrc $HOME/.zshrc
 }
 
 use_zsh() {
-  echo "Changing default shell to zsh..."
+  echo -e "${Cya}Changing default shell to zsh...${RCol}"
   sudo chsh -s $(which zsh)
-
-  echo "changing env to zsh..."
-  env zsh
 }
 
 setup_zsh() {

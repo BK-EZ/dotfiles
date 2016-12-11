@@ -1,6 +1,8 @@
 #!/bin/bash
 #
-# Utility functions used by setup scripts.
+# Perform a command taking in each line of a file as a
+# paramater to that command.
+
 set -e
 set -u
 
