@@ -4,6 +4,14 @@
 set -e
 set -u
 
+check_zsh() {
+  echo -e "${Cya}Checking zsh is installed...${RCol}"
+  if [[ -f "/usr/local/bin/zsh" ]]; then
+    echo -e "${Red}Brew installation of zsh not found${RCol}"
+    exit 1
+  fi
+}
+
 update_shellsfile() {
   echo -e "${Cya}Installing /etc/shells file..${RCol}."
   sudo cp $BASEDIR/shell/shells /etc/shells
@@ -29,6 +37,7 @@ use_zsh() {
 }
 
 setup_zsh() {
+  check_zsh
   update_shellsfile
   install_ohmyzsh
   use_zsh
